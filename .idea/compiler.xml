@@ -22,12 +22,26 @@
         <module name="hotel-service" />
         <module name="user-service" />
       </profile>
+      <profile name="Annotation profile for booking-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+        </processorPath>
+        <module name="booking-service" />
+      </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="reserva-service" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="booking-service" options="-parameters" />
       <module name="discovery-service" options="-parameters" />
       <module name="hotel-service" options="-parameters" />
+      <module name="reserva-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
     </option>
   </component>
