@@ -1,6 +1,9 @@
 spring:
   application:
     name: hotel-service
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/hotel-db
 
 server:
   port: 8081
