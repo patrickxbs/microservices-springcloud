@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+import static org.apache.coyote.ActionCode.AVAILABLE;
+
 @Service
 @Log4j2
 public class BookingService {
@@ -28,6 +30,14 @@ public class BookingService {
     public BookingResponse makeBooking(UUID userId, BookingRequest request) {
         HotelResponseClient hotel = hotelClient.findHotel(request.hotelId());
         log.info(hotel);
+
+        if (!hotel.status().equals("AVAILABLE")) {
+            throw new RuntimeException("Hotel busy or inactive");
+        }
+
+        if (request.guestCount() > hotel.capacity()) throw new RuntimeException(String.format(
+                "The hotel capacity has been exceeded. This hotel only allows '%s' people per room.", hotel.capacity()));
+
         return null;
     }
 
