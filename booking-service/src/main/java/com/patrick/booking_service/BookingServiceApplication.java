@@ -22,8 +22,9 @@ public class BookingServiceApplication {
 	@Bean
 	CommandLineRunner commandLineRunner(BookingService service) {
 		return args -> {
-			BookingRequest request = new BookingRequest(UUID.fromString("7c02be27-42cd-4671-b648-2a5cf9bd61f2"), LocalDate.now(), LocalDate.now(), 5);
-			service.makeBooking(UUID.fromString("7c02be27-42cd-4671-b648-2a5cf9bd61f1"), request);
+			BookingRequest request = new BookingRequest(UUID.fromString("7c02be27-42cd-4671-b648-2a5cf9bd61f2"), LocalDate.now(),
+					LocalDate.now().plusDays(2), 3);
+			service.makeBooking(UUID.fromString("b8d06a0a-b392-4afe-a54e-b6ddd6e4e7ac"), request);
 		};
 	}
 }
