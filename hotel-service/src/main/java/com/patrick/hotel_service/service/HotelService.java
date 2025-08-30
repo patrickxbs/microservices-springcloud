@@ -25,4 +25,10 @@ public class HotelService {
         hotel.setId(UUID.randomUUID());
         return hotelMapper.toResponse(hotelRepository.save(hotel));
     }
+
+    public HotelResponse findHotelById(UUID id) {
+        Hotel hotel = hotelRepository.findById(id).orElseThrow(
+                () -> new RuntimeException(String.format("Hotel with id '%s' not found", id)));
+        return hotelMapper.toResponse(hotel);
+    }
 }
