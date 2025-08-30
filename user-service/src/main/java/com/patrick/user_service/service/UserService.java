@@ -7,6 +7,8 @@ import com.patrick.user_service.model.User;
 import com.patrick.user_service.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class UserService {
 
@@ -21,5 +23,11 @@ public class UserService {
     public UserResponse createUser(UserRequest request) {
         User user = userMapper.toUser(request);
         return userMapper.toResponse(userRepository.save(user));
+    }
+
+    public UserResponse findUserById(UUID id) {
+        User user = userRepository.findById(id).orElseThrow(
+                () -> new RuntimeException(String.format("User with id '%s' not found", id)));
+        return userMapper.toResponse(user);
     }
 }
