@@ -8,10 +8,12 @@ import com.patrick.booking_service.dto.hotel.HotelResponseClient;
 import com.patrick.booking_service.dto.user.UserResponseClient;
 import com.patrick.booking_service.mapper.BookingMapper;
 import com.patrick.booking_service.model.Booking;
+import com.patrick.booking_service.model.enuns.BookingStatus;
 import com.patrick.booking_service.repository.BookingRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 @Service
@@ -42,6 +44,18 @@ public class BookingService {
         UserResponseClient user = userClient.findUser(userId);
         log.info(user);
         if (user == null) throw new RuntimeException("User not found");
+
+        Booking booking = bookingMapper.toBooking(request);
+        booking.setUserId(userId);
+
+        long days = ChronoUnit.DAYS.between(request.checkInDate(), request.checkOutDate());
+        double totalPrice = days * hotel.unitPrice();
+
+        booking.setTotalPrice(totalPrice);
+
+        booking.setStatus(BookingStatus.PENDING);
+
+        log.info(booking);
 
         return null;
     }
