@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/booking")
+@RequestMapping("/bookings")
 public class BookingController {
 
     private final BookingService bookingService;
@@ -20,7 +20,7 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
-    @PostMapping("/user/{id}")
+    @PostMapping("/user/{userId}")
     public ResponseEntity<BookingResponse> createBooking(@PathVariable UUID userId, @RequestBody @Valid BookingRequest bookingRequest) {
         return ResponseEntity.status(HttpStatus.CREATED).body(bookingService.makeBooking(userId, bookingRequest));
     }

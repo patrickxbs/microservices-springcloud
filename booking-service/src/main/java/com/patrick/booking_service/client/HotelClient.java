@@ -1,9 +1,9 @@
 package com.patrick.booking_service.client;
 
 import com.patrick.booking_service.dto.hotel.HotelResponseClient;
+import com.patrick.booking_service.dto.hotel.UpdateStatusHotelRequest;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
@@ -11,5 +11,8 @@ import java.util.UUID;
 public interface HotelClient {
 
     @GetMapping("/hotels/{hotelId}")
-    HotelResponseClient findHotel(@PathVariable UUID hotelId);
+    HotelResponseClient findHotelById(@PathVariable UUID hotelId);
+
+    @PutMapping("/hotels/{hotelId}")
+    void updateHotel(@PathVariable UUID hotelId, @RequestBody UpdateStatusHotelRequest status);
 }

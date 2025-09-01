@@ -38,7 +38,7 @@ public class HotelController {
         return ResponseEntity.ok(hotelService.findAllHotels(pageable));
     }
 
-    @PatchMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Void> updateStatus(@PathVariable UUID id, @RequestBody UpdateStatusHotelRequest statusRequest) {
         hotelService.updateStatus(id, statusRequest);
         return ResponseEntity.noContent().build();
