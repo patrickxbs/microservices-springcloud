@@ -7,4 +7,6 @@ spring:
       server:
         git:
           uri: https://github.com/patrickxbs/microservice-repo
-          search-paths: user-service
+          search-paths:
+            - user-service
+            - hotel-service

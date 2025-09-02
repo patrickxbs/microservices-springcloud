@@ -1,9 +1,13 @@
 spring:
   application:
     name: hotel-service
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/hotel-db
+  profiles:
+    active: default
+  cloud:
+    config:
+      uri: http://localhost:8888
+  config:
+    import: "configserver:http://localhost:8888"
 
 server:
   port: 8081
