@@ -2,10 +2,9 @@ server:
   port: 8888
 
 spring:
-  profiles:
-    active: native
   cloud:
     config:
       server:
-        native:
-          search-locations: "C:/hotel-booking-repo"
+        git:
+          uri: https://github.com/patrickxbs/microservice-repo
+          search-paths: user-service
