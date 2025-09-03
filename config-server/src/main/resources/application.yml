@@ -10,3 +10,4 @@ spring:
           search-paths:
             - user-service
             - hotel-service
+            - booking-service
